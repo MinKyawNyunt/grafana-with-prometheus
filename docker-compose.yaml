@@ -23,14 +23,3 @@ services:
       - ./volumes/prometheus-config/prometheus.yml:/etc/prometheus/prometheus.yml  # Mount local Prometheus config
     command:
       - "--config.file=/etc/prometheus/prometheus.yml"
-    depends_on:
-      - snmp-exporter
-
-  snmp-exporter:
-    image: prom/snmp-exporter:latest
-    container_name: snmp-exporter
-    restart: unless-stopped
-    ports:
-      - "9116:9116"
-    volumes:
-      - ./volumes/snmp-exporter-config/snmp.yml:/etc/snmp_exporter/snmp.yml
